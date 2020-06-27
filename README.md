@@ -5,7 +5,7 @@
 
 
 
-## Live Demo (You can now try it as guest!)
+## Live Demo 
 Link: Under Construction
 
 ## Technologies Used
