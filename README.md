@@ -1,4 +1,4 @@
-# Habit Tracker
+# Stand Sit Timer [WIP]
 - An application that reminds users with standing desks to interval between standing up and sitting down to live a healthy working lifestyle
 
 > - Maintained by: `James Dinh - jdinh8124`
