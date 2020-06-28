@@ -3,10 +3,18 @@ import Button from './button';
 
 export default function Timer(props) {
   const [time] = useState('60:00');
+  const [paused, isPaused] = useState(true);
 
   function timeToRender() {
-    debugger;
     return <h1>{time}</h1>;
+  }
+
+  function startOrPauseButton() {
+    if (paused) {
+      return <Button type="success" label="Start" onClick={() => isPaused(false) } />;
+    } else {
+      return <Button type="pause" label="Pause" onClick={() => isPaused(true)} />;
+    }
   }
 
   return (
@@ -15,8 +23,8 @@ export default function Timer(props) {
         {timeToRender()}
       </div>
       <div className="row justify-content-center">
-        <Button type="success" label="Start" />
-        <Button type="stop" label="Stop" />
+        {startOrPauseButton()}
+        <Button type="stop" label="Reset" />
       </div>
     </div>
   );
