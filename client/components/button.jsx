@@ -4,9 +4,9 @@ export default function Button(props) {
 
   function buttonToRender() {
     if (props.type === 'success') {
-      return <button type="button" className="btn btn-success">Start</button>;
+      return <button type="button" className="btn btn-success">{props.label}</button>;
     } else {
-      return <button type="button" className="btn btn-danger">Reset</button>;
+      return <button type="button" className="btn btn-danger">{props.label}</button>;
     }
   }
 

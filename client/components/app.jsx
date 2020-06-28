@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from './button';
+import Announcement from './announcement';
 import Input from './input';
 import Timer from './timer';
 
@@ -13,11 +13,10 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="container  col">
+        <Announcement />
         <Timer />
         <Input />
         <div className="row justify-content-center">
-          <Button type="success" />
-          <Button type="stop" />
         </div>
       </div>
     );
