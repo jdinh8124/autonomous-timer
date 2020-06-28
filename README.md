@@ -1,5 +1,5 @@
 # Stand Sit Timer [WIP]
-- An application that reminds users with standing desks to interval between standing up and sitting down to live a healthy working lifestyle
+- An application that reminds users with standing desks to interval between standing up, sitting down, and taking breaks to live a healthy working lifestyle
 
 > - Maintained by: `James Dinh - jdinh8124`
 
