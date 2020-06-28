@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from './button';
 
 export default function Timer(props) {
-  const [time] = useState('60:00');
-  const [paused, isPaused] = useState(true);
 
   function timeToRender() {
-    return <h1>{time}</h1>;
+    return <h1>{props.time}</h1>;
   }
 
   function startOrPauseButton() {
-    if (paused) {
-      return <Button type="success" label="Start" onClick={() => isPaused(false) } />;
+
+    if (props.paused) {
+      return <Button type="success" label="Start" functionality={props.setPausedState}/>;
     } else {
-      return <Button type="pause" label="Pause" onClick={() => isPaused(true)} />;
+      return <Button type="pause" label="Pause" functionality={props.setPausedState} />;
     }
   }
 
@@ -23,8 +22,11 @@ export default function Timer(props) {
         {timeToRender()}
       </div>
       <div className="row justify-content-center">
-        {startOrPauseButton()}
-        <Button type="stop" label="Reset" />
+        <div>
+          {startOrPauseButton()}
+        </div>
+        <Button functionality={props.reset} type="stop" label="Reset" />
+        <Button functionality={props.changeRotation} type="pause" label="Change" />
       </div>
     </div>
   );
