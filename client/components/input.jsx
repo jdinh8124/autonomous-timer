@@ -6,6 +6,7 @@ export default function Input(props) {
 
   function handleSubmit() {
     props.changeRotationTime(minutes);
+    setMinutes('');
   }
 
   function inputtedMinutes(event) {
@@ -17,7 +18,7 @@ export default function Input(props) {
       <form>
         <label>
           Change Minutes:
-          <input type="text" name="minutes" onChange={inputtedMinutes}/>
+          <input type="text" name="minutes" value={minutes} onChange={inputtedMinutes}/>
         </label>
         <Button type="success" label="Save" functionality={handleSubmit} />
         <Button type="danger" label="Clear" />

@@ -77,6 +77,7 @@ export default class App extends React.Component {
       } else {
         this.setState({ breakTime: parsedTime });
       }
+      this.setState({ time: parsedTime });
     }
   }
 
