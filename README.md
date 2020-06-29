@@ -5,7 +5,7 @@
 
 
 
-## Live Demo 
+## Live Demo
 Link: Under Construction
 
 ## Technologies Used
@@ -26,3 +26,4 @@ Link: Under Construction
 - User saved information
 
 ## Preview
+![Screenshot of App](server/public/images/appSS.PNG)

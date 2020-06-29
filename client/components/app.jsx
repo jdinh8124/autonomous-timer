@@ -7,10 +7,10 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      time: 4000,
+      time: 3600,
       paused: true,
       rotationNumber: 1,
-      standTime: 4000,
+      standTime: 3600,
       sitTime: 6000,
       breakTime: 500
     };
@@ -65,10 +65,11 @@ export default class App extends React.Component {
       this.setState({ rotationNumber: 1 });
       this.setState({ time: this.state.standTime });
     }
+    this.resetTime();
   }
 
   changeRotationTime(time) {
-    const parsedTime = parseInt(time, 10);
+    const parsedTime = parseInt(time, 10) * 60;
     if (parsedTime > 0) {
       if (this.state.rotationNumber === 1) {
         this.setState({ standTime: parsedTime });
@@ -83,11 +84,15 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="container  col">
-        <Announcement rotationNumber={this.state.rotationNumber}/>
-        <Timer changeRotation={this.changeRotation} reset={this.resetTime} time={this.state.time} paused={this.state.paused} setPausedState={this.setPausedState} />
-        <Input changeRotationTime={this.changeRotationTime} />
-        <div className="row justify-content-center">
+      <div className="container ">
+        <div className="col-6 offset-3 ">
+          <Announcement rotationNumber={this.state.rotationNumber}/>
+          <hr />
+          <Timer changeRotation={this.changeRotation} reset={this.resetTime} time={this.state.time} paused={this.state.paused} setPausedState={this.setPausedState} />
+          <hr />
+          <Input changeRotationTime={this.changeRotationTime} />
+          <div className="row justify-content-center">
+          </div>
         </div>
       </div>
     );

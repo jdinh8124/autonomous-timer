@@ -4,11 +4,17 @@ import Button from './button';
 export default function Timer(props) {
 
   function timeToRender() {
-    return <h1>{props.time}</h1>;
+    const min = Math.floor(props.time / 60);
+    let sec = (props.time - min * 60);
+    if (sec === 0) {
+      sec = '00';
+    } else if (sec < 10) {
+      sec = '0' + sec;
+    }
+    return <h1>{min + ':' + sec}</h1>;
   }
 
   function startOrPauseButton() {
-
     if (props.paused) {
       return <Button type="success" label="Start" functionality={props.setPausedState}/>;
     } else {

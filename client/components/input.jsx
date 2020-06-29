@@ -9,6 +9,10 @@ export default function Input(props) {
     setMinutes('');
   }
 
+  function clearInput() {
+    setMinutes('');
+  }
+
   function inputtedMinutes(event) {
     setMinutes(event.target.value);
   }
@@ -16,12 +20,12 @@ export default function Input(props) {
   return (
     <div className="row justify-content-center">
       <form>
-        <label>
+        <label >
           Change Minutes:
-          <input type="text" name="minutes" value={minutes} onChange={inputtedMinutes}/>
+          <input className="ml-2 pt-1 pb-1" type="text" name="minutes" value={minutes} onChange={inputtedMinutes}/>
         </label>
         <Button type="success" label="Save" functionality={handleSubmit} />
-        <Button type="danger" label="Clear" />
+        <Button type="danger" label="Clear" functionality={clearInput} />
       </form>
     </div>
 
