@@ -11,7 +11,7 @@ export default class App extends React.Component {
       paused: true,
       rotationNumber: 1,
       standTime: 3600,
-      sitTime: 6000,
+      sitTime: 3600,
       breakTime: 500
     };
     this.setPausedState = this.setPausedState.bind(this);
@@ -65,7 +65,6 @@ export default class App extends React.Component {
       this.setState({ rotationNumber: 1 });
       this.setState({ time: this.state.standTime });
     }
-    this.resetTime();
   }
 
   changeRotationTime(time) {
