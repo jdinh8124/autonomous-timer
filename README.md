@@ -6,7 +6,7 @@
 
 
 ## Live Demo
-Link: Under Construction
+Link: [Live Site](https://autonomous-timer-app.jamestdinh.com/)
 
 ## Technologies Used
 - React.js
