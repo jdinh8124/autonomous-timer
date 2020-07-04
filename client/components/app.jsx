@@ -35,6 +35,11 @@ export default class App extends React.Component {
   }
 
   timerTick() {
+    if(this.state.time === 0){
+      clearInterval(this.timerId);
+      this.setState({ rotationNumber: 4 });
+      return;
+    }
     this.setState(previousState => ({ time: previousState.time - 1 }));
   }
 

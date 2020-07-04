@@ -8,8 +8,10 @@ export default function Announcement(props) {
       announcement = 'Time To Stand';
     } else if (props.rotationNumber === 2) {
       announcement = 'Time To Sit';
-    } else {
+    } else if (props.rotationNumber === 3) {
       announcement = 'Time For A Break';
+    } else {
+      announcement = 'Time is up!!!';
     }
     return <h1>{announcement}</h1>;
   }
