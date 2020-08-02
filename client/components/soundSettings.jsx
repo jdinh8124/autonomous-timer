@@ -10,7 +10,7 @@ export default function SoundSettings(props) {
   }
 
   function showSoundMenu() {
-    return soundMenuOpen ? <SoundOptions/> : undefined;
+    return soundMenuOpen ? <SoundOptions changeAlarmSound={props.changeAlarmSound} closeMenu={openSoundMenu}/> : undefined;
   }
 
   return (

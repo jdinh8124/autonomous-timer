@@ -13,18 +13,21 @@ export default class App extends React.Component {
       rotationNumber: 1,
       standTime: 3600,
       sitTime: 3600,
-      breakTime: 500
+      breakTime: 500,
+      bellSound: './sounds/analog-watch-alarm.mp3'
     };
     this.setPausedState = this.setPausedState.bind(this);
     this.resetTime = this.resetTime.bind(this);
     this.changeRotation = this.changeRotation.bind(this);
     this.changeRotationTime = this.changeRotationTime.bind(this);
-
+    this.changeAlarmSound = this.changeAlarmSound.bind(this);
+    this.bell = new Audio();
   }
 
   setPausedState() {
     if (this.state.paused) {
       this.setState(({ paused: false }));
+      this.playAlarm(false);
       this.timerId = setInterval(
         () => this.timerTick(),
         1000
@@ -38,6 +41,7 @@ export default class App extends React.Component {
   timerTick() {
     if (this.state.time === 0) {
       clearInterval(this.timerId);
+      this.playAlarm(true);
       this.setState({ rotationNumber: 4 });
       return;
     }
@@ -71,6 +75,8 @@ export default class App extends React.Component {
       this.setState({ rotationNumber: 1 });
       this.setState({ time: this.state.standTime });
     }
+    clearInterval(this.timerId);
+    this.setState(({ paused: true }));
   }
 
   changeRotationTime(time) {
@@ -87,11 +93,30 @@ export default class App extends React.Component {
     }
   }
 
+  playAlarm(play) {
+    if (play) {
+      this.bell = new Audio(this.state.bellSound);
+      this.bell.play();
+    } else {
+      this.bell.pause();
+    }
+  }
+
+  changeAlarmSound(selectedNoise) {
+    if (selectedNoise === 'clock') {
+      this.setState({ bellSound: './sounds/analog-watch-alarm_daniel-simion.mp3' });
+    } else if (selectedNoise === 'ring') {
+      this.setState({ bellSound: './sounds/old-fashioned-school-bell-daniel_simon.mp3' });
+    } else {
+      this.setState({ bellSound: './sounds/zen-buddhist-temple.mp3' });
+    }
+  }
+
   render() {
     return (
       <div className="container pt-2">
         <div className="col-6 offset-3 ">
-          <SoundSettings />
+          <SoundSettings changeAlarmSound={this.changeAlarmSound} />
           <Announcement rotationNumber={this.state.rotationNumber}/>
           <hr />
           <Timer changeRotation={this.changeRotation} reset={this.resetTime} time={this.state.time} paused={this.state.paused} setPausedState={this.setPausedState} />
