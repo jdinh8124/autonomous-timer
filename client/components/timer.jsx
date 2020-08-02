@@ -23,7 +23,7 @@ export default function Timer(props) {
   }
 
   return (
-    <div className="">
+    <div>
       <div className="row justify-content-center">
         {timeToRender()}
       </div>

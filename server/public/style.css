@@ -5,3 +5,12 @@
 hr{
   border: 1px black solid;
 }
+
+.click:hover{
+  cursor: pointer;
+}
+
+.absolute-menu{
+  position: absolute;
+  left: 28vw;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import Announcement from './announcement';
+import SoundSettings from './soundSettings';
 import Input from './input';
 import Timer from './timer';
 
@@ -35,7 +36,7 @@ export default class App extends React.Component {
   }
 
   timerTick() {
-    if(this.state.time === 0){
+    if (this.state.time === 0) {
       clearInterval(this.timerId);
       this.setState({ rotationNumber: 4 });
       return;
@@ -88,8 +89,9 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="container ">
+      <div className="container pt-2">
         <div className="col-6 offset-3 ">
+          <SoundSettings />
           <Announcement rotationNumber={this.state.rotationNumber}/>
           <hr />
           <Timer changeRotation={this.changeRotation} reset={this.resetTime} time={this.state.time} paused={this.state.paused} setPausedState={this.setPausedState} />
