@@ -5,3 +5,37 @@
 hr{
   border: 1px black solid;
 }
+
+.click:hover{
+  cursor: pointer;
+}
+
+.absolute-menu{
+  position: absolute;
+  left: 28vw;
+}
+
+
+@media only screen and (max-width: 1640px){
+  .absolute-menu{
+  left: 35vw;
+}
+}
+
+@media only screen and (max-width: 1440px){
+  .absolute-menu{
+  left: 40vw;
+}
+}
+
+@media only screen and (max-width: 1240px){
+  .absolute-menu{
+  left: 45vw;
+}
+}
+
+@media only screen and (max-width: 990px){
+  .absolute-menu{
+  left: 35vw;
+}
+}
