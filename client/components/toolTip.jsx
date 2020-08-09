@@ -2,18 +2,8 @@ import React, { useState } from 'react';
 import SoundSettings from './soundSettings';
 
 export default function ToolTip(props) {
-  // const node = useRef();
   const [isVisible, setToolTipVisibility] = useState(false);
   const [soundOpen, setSoundMenuOpen] = useState(false);
-
-  // function handleClick({ target }) {
-  //   if (node.current.contains(target)) {
-  //     // inside click
-  //     return;
-  //   }
-  //   // outside click
-  //   setState(false);
-  // }
 
   function handleMouseIn() {
     if (!soundOpen) {
@@ -22,7 +12,6 @@ export default function ToolTip(props) {
   }
 
   function handleMouseOut() {
-    console.log('bye');
     setToolTipVisibility(false);
   }
 
