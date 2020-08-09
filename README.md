@@ -10,7 +10,7 @@ Link: [Live Site](https://autonomous-timer-app.jamestdinh.com/)
 
 ## Technologies Used
 - React.js
-- Webpack 
+- Webpack
 - Bootstrap 4
 - HTML5
 - CSS3
@@ -30,4 +30,5 @@ Link: [Live Site](https://autonomous-timer-app.jamestdinh.com/)
 - Option to add customize intervals
 
 ## Preview
+![Gif of App](server/public/images/timer-demo.gif)
 ![Screenshot of App](server/public/images/appSS.PNG)
