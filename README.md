@@ -20,7 +20,7 @@ Link: [Live Site](https://autonomous-timer-app.jamestdinh.com/)
 ## Features
 - User can user the timer to create intervals between standing and sitting
 - User can schedule breaks in between standing and sitting
-- User can chane alarm sounds
+- User can change alarm sounds
 - User can adjust time at each interval
 
 ## Future Additions
