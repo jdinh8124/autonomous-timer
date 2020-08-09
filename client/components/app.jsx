@@ -1,8 +1,8 @@
 import React from 'react';
 import Announcement from './announcement';
-import SoundSettings from './soundSettings';
 import Input from './input';
 import Timer from './timer';
+import ToolTip from './toolTip';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -116,7 +116,7 @@ export default class App extends React.Component {
     return (
       <div className="container pt-2">
         <div className="col-6 offset-3 ">
-          <SoundSettings changeAlarmSound={this.changeAlarmSound} />
+          <ToolTip changeAlarmSound={this.changeAlarmSound}/>
           <Announcement rotationNumber={this.state.rotationNumber}/>
           <hr />
           <Timer changeRotation={this.changeRotation} reset={this.resetTime} time={this.state.time} paused={this.state.paused} setPausedState={this.setPausedState} />

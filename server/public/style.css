@@ -15,9 +15,19 @@ hr{
   left: 28vw;
 }
 
+.tool-tip{
+  position: absolute;
+  left: 28vw;
+
+}
+
+.hidden{
+  display: none;
+}
+
 
 @media only screen and (max-width: 1640px){
-  .absolute-menu{
+  .absolute-menu, .tool-tip{
   left: 35vw;
 }
 }

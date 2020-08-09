@@ -6,7 +6,13 @@ export default function SoundSettings(props) {
   const [soundMenuOpen, openMenu] = useState(false);
 
   function openSoundMenu() {
-    soundMenuOpen ? openMenu(false) : openMenu(true);
+    if (soundMenuOpen) {
+      openMenu(false);
+      props.setSoundMenuOpen(false);
+    } else {
+      openMenu(true);
+      props.setSoundMenuOpen(true);
+    }
   }
 
   function showSoundMenu() {
