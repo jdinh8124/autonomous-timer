@@ -5,7 +5,7 @@ export default function Input(props) {
   const [minutes, setMinutes] = useState('');
 
   function handleSubmit() {
-    props.changeRotationTime(minutes);
+    props.handleSubmit(minutes);
     setMinutes('');
   }
 
@@ -21,7 +21,7 @@ export default function Input(props) {
     <div className="row justify-content-center">
       <form className="d-flex flex-column flex-xl-row">
         <div className="pt-2">
-          <span>Change Minutes:</span>
+          <span>{props.label}</span>
           <input className="mx-2 pt-1 pb-1" type="text" name="minutes" value={minutes} onChange={inputtedMinutes}/>
         </div>
         <Button type="success" label="Save" functionality={handleSubmit} />

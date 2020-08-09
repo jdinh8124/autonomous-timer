@@ -17,7 +17,7 @@ export default function Announcement(props) {
   }
 
   return (
-    <div className="row justify-content-center">
+    <div className="row justify-content-center text-center">
       {announcementToRender()}
     </div>
   );

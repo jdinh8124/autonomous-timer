@@ -121,7 +121,7 @@ export default class App extends React.Component {
           <hr />
           <Timer changeRotation={this.changeRotation} reset={this.resetTime} time={this.state.time} paused={this.state.paused} setPausedState={this.setPausedState} />
           <hr />
-          <Input changeRotationTime={this.changeRotationTime} />
+          <Input label="Change Minutes:" handleSubmit={this.changeRotationTime} />
           <div className="row justify-content-center">
           </div>
         </div>
