@@ -23,7 +23,7 @@ app.post('/api/auth/signup', (req, res, next) => {
   bcrypt.hash(req.body.userPwd, 10, function (err, hash) {
     console.error(err);
     const sql = `
-    insert into "user"("userName", "email", "userPwd")
+    insert into "user"("user", "email", "password")
     values ($1, $2, $3)
     returning "userName";
     `;
@@ -46,12 +46,12 @@ app.post('/api/auth/login', (req, res, next) => {
   const userSql = `
     select "userPwd"
       from "user"
-     where "userName" = $1;
+     where "user" = $1;
     `;
   const getUserIdSql = `
     select "userId"
       from "user"
-     where "userName" = $1;
+     where "user" = $1;
   `;
   const userValues = [req.body.userName];
   db.query(userSql, userValues)

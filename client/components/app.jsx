@@ -8,6 +8,8 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loggedIn: false,
+      userId: parseInt(sessionStorage.getItem('id')),
       time: 3600,
       paused: true,
       rotationNumber: 1,
@@ -21,7 +23,23 @@ export default class App extends React.Component {
     this.changeRotation = this.changeRotation.bind(this);
     this.changeRotationTime = this.changeRotationTime.bind(this);
     this.changeAlarmSound = this.changeAlarmSound.bind(this);
+    this.setUserId = this.setUserId.bind(this);
+
     this.bell = new Audio();
+  }
+
+  signOut() {
+    this.setState(previousState => ({
+      loggedIn: false
+    }));
+    sessionStorage.setItem('id', null);
+  }
+
+  setUserId() {
+    this.setState(previousState => ({
+      userId: parseInt(sessionStorage.getItem('id')),
+      loggedIn: true
+    }));
   }
 
   setPausedState() {
