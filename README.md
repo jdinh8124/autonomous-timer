@@ -10,6 +10,8 @@ Link: [Live Site](https://autonomous-timer-app.jamestdinh.com/)
 
 ## Technologies Used
 - React.js
+- Node.js
+- Express
 - Webpack
 - Bootstrap 4
 - HTML5
@@ -25,6 +27,9 @@ Link: [Live Site](https://autonomous-timer-app.jamestdinh.com/)
 
 ## Future Additions
 - User saved information
+- User can register an account
+- User can login
+- User can login as guest
 - Updated UI
 - More sounds
 - Option to add customize intervals
