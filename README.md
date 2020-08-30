@@ -25,6 +25,9 @@ Link: [Live Site](https://autonomous-timer-app.jamestdinh.com/)
 - User can change alarm sounds
 - User can adjust time at each interval
 
+## DB Design
+[DB Designer](https://dbdesigner.page.link/yBWcEDc5CfZ5f5eA9)
+
 ## Future Additions
 - User saved information
 - User can register an account
