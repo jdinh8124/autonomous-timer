@@ -1,28 +1,47 @@
 import React, { useState } from 'react';
 import SoundSettings from './soundSettings';
+import UserSettings from './userSettings';
 
 export default function ToolTip(props) {
-  const [isVisible, setToolTipVisibility] = useState(false);
+  const [isSoundSettingVisible, setSoundToolTipVisibility] = useState(false);
+  const [isUserSettingVisible, setUserToolTipVisibility] = useState(false);
   const [soundOpen, setSoundMenuOpen] = useState(false);
 
-  function handleMouseIn() {
+  function handleSoundMouseIn() {
     if (!soundOpen) {
-      setToolTipVisibility(true);
+      setSoundToolTipVisibility(true);
     }
   }
 
-  function handleMouseOut() {
-    setToolTipVisibility(false);
+  function handleSoundMouseOut() {
+    setSoundToolTipVisibility(false);
+  }
+
+  function handleUserMouseIn() {
+    if (!soundOpen) {
+      setUserToolTipVisibility(true);
+    }
+  }
+
+  function handleUserMouseOut() {
+    setUserToolTipVisibility(false);
   }
 
   return (
     <>
-      <div onMouseDown={handleMouseOut} onMouseOver={handleMouseIn} onMouseOut={handleMouseOut}>
-        <SoundSettings setSoundMenuOpen={setSoundMenuOpen} changeAlarmSound={props.changeAlarmSound} />
-      </div>
-
-      <div className={isVisible ? 'tool-tip' : 'hidden'}>
-        Change Alert Sounds
+      <div className="row">
+        <div className="ml-auto" onMouseDown={handleSoundMouseOut} onMouseOver={handleSoundMouseIn} onMouseOut={handleSoundMouseOut}>
+          <SoundSettings setSoundMenuOpen={setSoundMenuOpen} changeAlarmSound={props.changeAlarmSound} />
+          <div className={isSoundSettingVisible ? 'tool-tip' : 'hidden'}>
+            Change Alert Sounds
+          </div>
+        </div>
+        <div onMouseDown={handleUserMouseOut} onMouseOver={handleUserMouseIn} onMouseOut={handleUserMouseOut}>
+          <UserSettings setSoundMenuOpen={setSoundMenuOpen} changeAlarmSound={props.changeAlarmSound} />
+          <div className={isUserSettingVisible ? 'tool-tip' : 'hidden'}>
+            Login
+          </div>
+        </div>
       </div>
     </>
   );
