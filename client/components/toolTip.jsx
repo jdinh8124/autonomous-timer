@@ -6,6 +6,7 @@ export default function ToolTip(props) {
   const [isSoundSettingVisible, setSoundToolTipVisibility] = useState(false);
   const [isUserSettingVisible, setUserToolTipVisibility] = useState(false);
   const [soundOpen, setSoundMenuOpen] = useState(false);
+  const [userOpen, setUserMenuOpen] = useState(false);
 
   function handleSoundMouseIn() {
     if (!soundOpen) {
@@ -18,7 +19,7 @@ export default function ToolTip(props) {
   }
 
   function handleUserMouseIn() {
-    if (!soundOpen) {
+    if (!userOpen) {
       setUserToolTipVisibility(true);
     }
   }
@@ -37,7 +38,7 @@ export default function ToolTip(props) {
           </div>
         </div>
         <div onMouseDown={handleUserMouseOut} onMouseOver={handleUserMouseIn} onMouseOut={handleUserMouseOut}>
-          <UserSettings setSoundMenuOpen={setSoundMenuOpen} changeAlarmSound={props.changeAlarmSound} />
+          <UserSettings setUserMenuOpen={setUserMenuOpen} />
           <div className={isUserSettingVisible ? 'tool-tip' : 'hidden'}>
             Login
           </div>

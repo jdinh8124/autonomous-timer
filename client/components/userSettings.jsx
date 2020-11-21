@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import SoundOptions from './soundOptions';
-
+import SignInModal from './signInModal';
 export default function UserSettings(props) {
 
   const [userMenuOpen, openMenu] = useState(false);
@@ -8,15 +7,15 @@ export default function UserSettings(props) {
   function openSoundMenu() {
     if (userMenuOpen) {
       openMenu(false);
-      props.setuserMenuOpen(false);
+      props.setUserMenuOpen(false);
     } else {
       openMenu(true);
-      props.setuserMenuOpen(true);
+      props.setUserMenuOpen(true);
     }
   }
 
   function showUserMenu() {
-    return userMenuOpen ? <SoundOptions changeAlarmSound={props.changeAlarmSound} closeMenu={openSoundMenu}/> : undefined;
+    return userMenuOpen ? <SignInModal /> : undefined;
   }
 
   return (
