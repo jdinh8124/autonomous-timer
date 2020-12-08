@@ -11,13 +11,13 @@ export default function App() {
   const [standTime, setStandingTime] = React.useState(3600);
   const [sitTime, setSittingTime] = React.useState(3600);
   const [breakTime, setBreakTime] = React.useState(500);
-  const [bellRingSound, setBellRingSound] = React.useState('./sounds/analog-watch-alarm.mp3')
+  const [bellRingSound, setBellRingSound] = React.useState('./sounds/analog-watch-alarm.mp3');
   let bell = new Audio();
   let timerId;
 
-
   const setPausedState = () => {
     if (timerPaused) {
+      console.log('hello');
       setPausedTimer(false);
       playAlarm(false);
       timerId = setInterval(
@@ -28,7 +28,7 @@ export default function App() {
       setPausedTimer(true);
       clearInterval(timerId);
     }
-  }
+  };
 
   const timerTick = () => {
     if (time === 0) {
@@ -38,38 +38,39 @@ export default function App() {
       return;
     }
     setTime(time - 1);
-  }
+    console.log('timer tick');
+  };
 
   const resetTime = () => {
     setPausedTimer(true);
     clearInterval(timerId);
     checkRotationTime();
-  }
+  };
 
   const checkRotationTime = () => {
     if (rotation === 1) {
-      setTime(standTime)
+      setTime(standTime);
     } else if (rotation === 2) {
-      setTime(sitTime)
+      setTime(sitTime);
     } else {
-      setTime(breakTime)
+      setTime(breakTime);
     }
-  }
+  };
 
   const changeRotation = () => {
     if (rotation === 1) {
-      setRotation(2)
+      setRotation(2);
       setTime(sitTime);
     } else if (rotation === 2) {
-      setRotation(3)
+      setRotation(3);
       setTime(breakTime);
     } else {
-      setRotation(1)
+      setRotation(1);
       setTime(standTime);
     }
     clearInterval(timerId);
-    setPausedTimer(true)
-  }
+    setPausedTimer(true);
+  };
 
   const changeRotationTime = time => {
     const parsedTime = parseInt(time, 10) * 60;
@@ -83,7 +84,7 @@ export default function App() {
       }
       setTime(parsedTime);
     }
-  }
+  };
 
   const playAlarm = play => {
     if (play) {
@@ -92,7 +93,7 @@ export default function App() {
     } else {
       bell.pause();
     }
-  }
+  };
 
   const changeAlarmSound = selectedNoise => {
     if (selectedNoise === 'clock') {

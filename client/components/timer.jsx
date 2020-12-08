@@ -11,6 +11,7 @@ export default function Timer(props) {
     } else if (sec < 10) {
       sec = '0' + sec;
     }
+    console.log(min, sec);
     return <h1>{min + ':' + sec}</h1>;
   }
 
