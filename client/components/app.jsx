@@ -4,119 +4,128 @@ import Input from './input';
 import Timer from './timer';
 import ToolTip from './toolTip';
 
-export default function App() {
-  const [time, setTime] = React.useState(3600);
-  const [timerPaused, setPausedTimer] = React.useState(true);
-  const [rotation, setRotation] = React.useState(1);
-  const [standTime, setStandingTime] = React.useState(3600);
-  const [sitTime, setSittingTime] = React.useState(3600);
-  const [breakTime, setBreakTime] = React.useState(500);
-  const [bellRingSound, setBellRingSound] = React.useState('./sounds/analog-watch-alarm.mp3');
-  let bell = new Audio();
-  let timerId;
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      time: 3600,
+      paused: true,
+      rotationNumber: 1,
+      standTime: 3600,
+      sitTime: 3600,
+      breakTime: 500,
+      bellSound: './sounds/analog-watch-alarm.mp3'
+    };
+    this.setPausedState = this.setPausedState.bind(this);
+    this.resetTime = this.resetTime.bind(this);
+    this.changeRotation = this.changeRotation.bind(this);
+    this.changeRotationTime = this.changeRotationTime.bind(this);
+    this.changeAlarmSound = this.changeAlarmSound.bind(this);
+    this.bell = new Audio();
+  }
 
-  const setPausedState = () => {
-    if (timerPaused) {
-      console.log('hello');
-      setPausedTimer(false);
-      playAlarm(false);
-      timerId = setInterval(
-        () => timerTick(),
+  setPausedState() {
+    if (this.state.paused) {
+      this.setState(({ paused: false }));
+      this.playAlarm(false);
+      this.timerId = setInterval(
+        () => this.timerTick(),
         1000
       );
     } else {
-      setPausedTimer(true);
-      clearInterval(timerId);
+      this.setState(({ paused: true }));
+      clearInterval(this.timerId);
     }
-  };
+  }
 
-  const timerTick = () => {
-    if (time === 0) {
-      clearInterval(timerId);
-      playAlarm(true);
-      setRotation(4);
+  timerTick() {
+    if (this.state.time === 0) {
+      clearInterval(this.timerId);
+      this.playAlarm(true);
+      this.setState({ rotationNumber: 4 });
       return;
     }
-    setTime(time - 1);
-    console.log('timer tick');
-  };
+    this.setState(previousState => ({ time: previousState.time - 1 }));
+  }
 
-  const resetTime = () => {
-    setPausedTimer(true);
-    clearInterval(timerId);
-    checkRotationTime();
-  };
+  resetTime() {
+    this.setState(({ paused: true }));
+    clearInterval(this.timerId);
+    this.checkRotationTime();
+  }
 
-  const checkRotationTime = () => {
-    if (rotation === 1) {
-      setTime(standTime);
-    } else if (rotation === 2) {
-      setTime(sitTime);
+  checkRotationTime() {
+    if (this.state.rotationNumber === 1) {
+      this.setState({ time: this.state.standTime });
+    } else if (this.state.rotationNumber === 2) {
+      this.setState({ time: this.state.sitTime });
     } else {
-      setTime(breakTime);
+      this.setState({ time: this.state.breakTime });
     }
-  };
+  }
 
-  const changeRotation = () => {
-    if (rotation === 1) {
-      setRotation(2);
-      setTime(sitTime);
-    } else if (rotation === 2) {
-      setRotation(3);
-      setTime(breakTime);
+  changeRotation() {
+    if (this.state.rotationNumber === 1) {
+      this.setState({ rotationNumber: 2 });
+      this.setState({ time: this.state.sitTime });
+    } else if (this.state.rotationNumber === 2) {
+      this.setState({ rotationNumber: 3 });
+      this.setState({ time: this.state.breakTime });
     } else {
-      setRotation(1);
-      setTime(standTime);
+      this.setState({ rotationNumber: 1 });
+      this.setState({ time: this.state.standTime });
     }
-    clearInterval(timerId);
-    setPausedTimer(true);
-  };
+    clearInterval(this.timerId);
+    this.setState(({ paused: true }));
+  }
 
-  const changeRotationTime = time => {
+  changeRotationTime(time) {
     const parsedTime = parseInt(time, 10) * 60;
     if (parsedTime > 0) {
-      if (rotation === 1) {
-        setStandingTime(parsedTime);
-      } else if (rotation === 2) {
-        setSittingTime(parsedTime);
+      if (this.state.rotationNumber === 1) {
+        this.setState({ standTime: parsedTime });
+      } else if (this.state.rotationNumber === 2) {
+        this.setState({ sitTime: parsedTime });
       } else {
-        setBreakTime(parsedTime);
+        this.setState({ breakTime: parsedTime });
       }
-      setTime(parsedTime);
+      this.setState({ time: parsedTime });
     }
-  };
+  }
 
-  const playAlarm = play => {
+  playAlarm(play) {
     if (play) {
-      bell = new Audio(bellRingSound);
-      bell.play();
+      this.bell = new Audio(this.state.bellSound);
+      this.bell.play();
     } else {
-      bell.pause();
+      this.bell.pause();
     }
-  };
+  }
 
-  const changeAlarmSound = selectedNoise => {
+  changeAlarmSound(selectedNoise) {
     if (selectedNoise === 'clock') {
-      setBellRingSound('./sounds/analog-watch-alarm_daniel-simion.mp3');
+      this.setState({ bellSound: './sounds/analog-watch-alarm_daniel-simion.mp3' });
     } else if (selectedNoise === 'ring') {
-      setBellRingSound('./sounds/old-fashioned-school-bell-daniel_simon.mp3');
+      this.setState({ bellSound: './sounds/old-fashioned-school-bell-daniel_simon.mp3' });
     } else {
-      setBellRingSound('./sounds/zen-buddhist-temple.mp3');
+      this.setState({ bellSound: './sounds/zen-buddhist-temple.mp3' });
     }
-  };
+  }
 
-  return (
-    <div className="container pt-2">
-      <div className="col-6 offset-3 ">
-        <ToolTip changeAlarmSound={changeAlarmSound}/>
-        <Announcement rotationNumber={rotation}/>
-        <hr />
-        <Timer changeRotation={changeRotation} reset={resetTime} time={time} paused={timerPaused} setPausedState={setPausedState} />
-        <hr />
-        <Input label="Change Minutes:" handleSubmit={changeRotationTime} />
-        <div className="row justify-content-center">
+  render() {
+    return (
+      <div className="container pt-2">
+        <div className="col-6 offset-3 ">
+          <ToolTip changeAlarmSound={this.changeAlarmSound}/>
+          <Announcement rotationNumber={this.state.rotationNumber}/>
+          <hr />
+          <Timer changeRotation={this.changeRotation} reset={this.resetTime} time={this.state.time} paused={this.state.paused} setPausedState={this.setPausedState} />
+          <hr />
+          <Input label="Change Minutes:" handleSubmit={this.changeRotationTime} />
+          <div className="row justify-content-center">
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
