@@ -12,7 +12,7 @@ hr{
 
 .absolute-menu{
   position: absolute;
-  left: 28vw;
+  left: 30vw;
 }
 
 .tool-tip{
@@ -41,12 +41,12 @@ hr{
 
 @media only screen and (max-width: 1240px){
   .absolute-menu{
-  left: 45vw;
+  left: 38vw;
 }
 }
 
 @media only screen and (max-width: 990px){
   .absolute-menu{
-  left: 35vw;
+  left: 40vw;
 }
 }
